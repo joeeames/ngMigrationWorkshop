@@ -8,12 +8,16 @@ import { NameParser } from "./admin/nameParser.service";
 import { UnreviewedTalkComponent } from "./home/unreviewedTalk.component";
 import { TalkDurationPipe } from "./common/talkDuration.pipe";
 import { ProfileComponent } from "./profile/profile.component";
+import { TOASTR_TOKEN } from "./toastr/toastr.service";
 
 function getLocation(i) {
   return i.get('$location')
 }
 function getCurrentIdentity(i) {
   return i.get('currentIdentity')
+}
+function getToastr() {
+  return toastr;
 }
 
 @NgModule({
@@ -32,7 +36,8 @@ function getCurrentIdentity(i) {
   providers: [
     NameParser,
     { provide: '$location', useFactory: getLocation, deps: ['$injector']},
-    { provide: 'currentIdentity', useFactory: getCurrentIdentity, deps: ['$injector']}
+    { provide: 'currentIdentity', useFactory: getCurrentIdentity, deps: ['$injector']},
+    { provide: TOASTR_TOKEN, useFactory: getToastr }
   ],
   bootstrap: [
     AppComponent
