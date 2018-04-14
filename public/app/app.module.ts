@@ -9,6 +9,7 @@ import { UnreviewedTalkComponent } from "./home/unreviewedTalk.component";
 import { TalkDurationPipe } from "./common/talkDuration.pipe";
 import { ProfileComponent } from "./profile/profile.component";
 import { TOASTR_TOKEN } from "./toastr/toastr.service";
+import { NavComponent } from "./nav/nav.component";
 
 function getLocation(i) {
   return i.get('$location')
@@ -31,7 +32,8 @@ function getToastr() {
     AppComponent,
     UnreviewedTalkComponent,
     TalkDurationPipe,
-    ProfileComponent
+    ProfileComponent,
+    NavComponent
   ],
   providers: [
     NameParser,
