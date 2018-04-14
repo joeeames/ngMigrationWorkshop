@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Inject } from "@angular/core";
 
 @Component({
   selector: 'profile',
@@ -7,7 +7,8 @@ import { Component } from "@angular/core";
 export class ProfileComponent {
   currentIdentity: any;
 
-  constructor(/*$location, toastr, currentIdentity*/) {
+  /*$location, toastr, currentIdentity*/
+  constructor(@Inject('$location') private $location ) {
     this.currentIdentity = { currentUser: { firstName: 'joe', lastName: 'eames'}}
     // this.profile = angular.copy(currentIdentity.currentUser);
   }
@@ -18,6 +19,6 @@ export class ProfileComponent {
   }
   
   cancel() {
-    // $location.path('/home');
+    this.$location.path('/home');
   }
 }

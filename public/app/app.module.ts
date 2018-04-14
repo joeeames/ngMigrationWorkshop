@@ -9,6 +9,10 @@ import { UnreviewedTalkComponent } from "./home/unreviewedTalk.component";
 import { TalkDurationPipe } from "./common/talkDuration.pipe";
 import { ProfileComponent } from "./profile/profile.component";
 
+function getLocation(i) {
+  return i.get('$location')
+}
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -23,7 +27,8 @@ import { ProfileComponent } from "./profile/profile.component";
     ProfileComponent
   ],
   providers: [
-    NameParser
+    NameParser,
+    { provide: '$location', useFactory: getLocation, deps: ['$injector']}
   ],
   bootstrap: [
     AppComponent
