@@ -1,6 +1,5 @@
-to install & Run:
+to install:
 
 npm install
-npm install nodemon -g
-cd server
-nodemon server.js
+
+
