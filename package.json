@@ -1,0 +1,37 @@
+{
+  "name": "lightning-voter-demo",
+  "version": "1.0.0",
+  "description": "lightning talk voting app",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./server/server.js",
+    "dev": "nodemon ./server/server.js -w ./server",
+    "test": "karma start",
+    "tsc": "tsc -p . -w"
+  },
+  "keywords": [],
+  "author": "joe eames",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.17.2",
+    "cookie-parser": "1.4.3",
+    "debug": "2.6.8",
+    "ejs": "2.5.6",
+    "express": "4.15.3",
+    "express-session": "1.15.3",
+    "morgan": "1.8.2",
+    "passport": "0.3.2",
+    "passport-local": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/angular": "1.6.26",
+    "@types/core-js": "0.9.42",
+    "@types/jasmine": "2.5.53",
+    "jasmine-core": "2.6.4",
+    "karma": "1.7.0",
+    "karma-chrome-launcher": "2.2.0",
+    "karma-jasmine": "1.1.0",
+    "karma-ng-html2js-preprocessor": "1.0.0",
+    "typescript": "2.3.4"
+  }
+}
