@@ -5,16 +5,15 @@ import { Component, Inject } from "@angular/core";
   templateUrl: './profile.component.html'
 })
 export class ProfileComponent {
-  currentIdentity: any;
 
   /*$location, toastr, currentIdentity*/
-  constructor(@Inject('$location') private $location ) {
-    this.currentIdentity = { currentUser: { firstName: 'joe', lastName: 'eames'}}
+  constructor(@Inject('$location') private $location,
+      @Inject('currentIdentity') private currentIdentity ) {
     // this.profile = angular.copy(currentIdentity.currentUser);
   }
   
-  save() {
-    // currentIdentity.updateUser(this.profile);
+  save(newProfile) {
+    this.currentIdentity.updateUser(newProfile);
     // toastr.success('Profile Saved!');
   }
   

@@ -12,6 +12,9 @@ import { ProfileComponent } from "./profile/profile.component";
 function getLocation(i) {
   return i.get('$location')
 }
+function getCurrentIdentity(i) {
+  return i.get('currentIdentity')
+}
 
 @NgModule({
   imports: [
@@ -28,7 +31,8 @@ function getLocation(i) {
   ],
   providers: [
     NameParser,
-    { provide: '$location', useFactory: getLocation, deps: ['$injector']}
+    { provide: '$location', useFactory: getLocation, deps: ['$injector']},
+    { provide: 'currentIdentity', useFactory: getCurrentIdentity, deps: ['$injector']}
   ],
   bootstrap: [
     AppComponent
