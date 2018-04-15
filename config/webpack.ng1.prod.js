@@ -2,20 +2,15 @@ const path = require('path');
 const webpack = require('webpack');
 const helpers = require('./helpers');
 
-const angularCompilerPlugin = require('@ngtools/webpack').AngularCompilerPlugin
-
-var x = require('@ngtools/webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-const ENV = process.env.NODE_ENV = process.env.ENV = 'development';
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
 
 module.exports = {
 
   entry: {
-    'polyfills': './public/polyfills.ts',
-    'vendor': './public/vendor.aot.ts',
-    'app': './public/main-aot.ts'
+    'ng1': './public/index.ts',
   },
 
   output: {
@@ -33,7 +28,7 @@ module.exports = {
     rules: [
       {
         test: /\.ts$/,
-        loader: '@ngtools/webpack'
+        loaders: ['awesome-typescript-loader', 'angular2-template-loader']
       },
       {
         test: /\.html$/,
@@ -44,24 +39,7 @@ module.exports = {
 
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
-      minChunks: Infinity
-    }),
-
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      chunks: ['vendor', 'app'],
-      minChunks: 2
-    }),
-
-    new angularCompilerPlugin({
-      tsConfigPath: './tsconfig.aot.json',
-      entryModule: helpers.root('public/app/app.module#AppModule')
-    }),
-
-    new HtmlWebpackPlugin({
-      template: 'config/index.html',
-      chunks: ['app']
+      name: 'ng1'
     }),
 
     new webpack.optimize.UglifyJsPlugin({
@@ -69,7 +47,8 @@ module.exports = {
       comments: false,
       compress: {
         warnings: false
-      }
+      },
+      mangle: false
     }),
 
     new webpack.DefinePlugin({
@@ -77,8 +56,6 @@ module.exports = {
         'ENV': JSON.stringify(ENV)
       }
     }),
-
-    new webpack.ContextReplacementPlugin(/\@angular(\\|\/)core(\\|\/)esm5/, path.join(__dirname, './client')),
 
     // new BundleAnalyzerPlugin({
     //   analyzerMode: 'static'
