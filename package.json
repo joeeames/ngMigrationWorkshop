@@ -42,7 +42,7 @@
     "@types/jasmine": "2.8.6",
     "@types/jasminewd2": "2.0.3",
     "@types/node": "6.0.102",
-    "@ngtools/webpack": "1.5.5",
+    "@ngtools/webpack": "1.10.2",
     "@types/angular": "1.6.26",
     "@types/core-js": "0.9.42",
     "angular2-template-loader": "0.6.2",
