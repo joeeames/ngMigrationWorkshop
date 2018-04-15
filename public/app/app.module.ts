@@ -13,13 +13,13 @@ import { NavComponent } from "./nav/nav.component";
 import { Sessions } from "./sessions/sessions.service";
 import { DetailPanelComponent } from "./common/detailPanel.component";
 
-function getLocation(i) {
+export function getLocation(i) {
   return i.get('$location')
 }
-function getCurrentIdentity(i) {
+export function getCurrentIdentity(i) {
   return i.get('currentIdentity')
 }
-function getToastr() {
+export function getToastr() {
   return toastr;
 }
 
