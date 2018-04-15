@@ -10,6 +10,7 @@ import { TalkDurationPipe } from "./common/talkDuration.pipe";
 import { ProfileComponent } from "./profile/profile.component";
 import { TOASTR_TOKEN } from "./toastr/toastr.service";
 import { NavComponent } from "./nav/nav.component";
+import { Sessions } from "./sessions/sessions.service";
 
 function getLocation(i) {
   return i.get('$location')
@@ -37,6 +38,7 @@ function getToastr() {
   ],
   providers: [
     NameParser,
+    Sessions,
     { provide: '$location', useFactory: getLocation, deps: ['$injector']},
     { provide: 'currentIdentity', useFactory: getCurrentIdentity, deps: ['$injector']},
     { provide: TOASTR_TOKEN, useFactory: getToastr }
