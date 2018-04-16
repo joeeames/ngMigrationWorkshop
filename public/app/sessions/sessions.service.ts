@@ -13,7 +13,7 @@ export class Sessions {
   }
 
   getAllSessions() {
-    return this.http.get('/api/sessions').toPromise();
+    return this.http.get('/api/sessions');
   }
   
   createNewSession(newSession) {

@@ -14,6 +14,8 @@ import { Sessions } from "./sessions/sessions.service";
 import { DetailPanelComponent } from "./common/detailPanel.component";
 import { SessionDetailWithVotesComponent } from "./sessions/sessionDetailWithVotes.component";
 import { ResultsComponent } from "./admin/results.component";
+import { RouterModule, UrlHandlingStrategy, UrlTree } from "@angular/router";
+import { AllSessionsResolver } from "./sessions/allSessions.resolver";
 
 export function getLocation(i) {
   return i.get('$location')
@@ -25,12 +27,28 @@ export function getToastr() {
   return toastr;
 }
 
+class Ng1Ng2UrlHandlingStrategy implements UrlHandlingStrategy {
+  shouldProcessUrl(url: UrlTree): boolean {
+    return url.toString().startsWith('/admin/results');
+  }
+  extract(url: UrlTree): UrlTree {
+    return url;
+  }
+  merge(newUrlPart: UrlTree, rawUrl: UrlTree): UrlTree {
+    return newUrlPart
+  }
+}
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    UpgradeModule
+    UpgradeModule,
+    RouterModule.forRoot([
+      { path: 'admin/results', component: ResultsComponent,
+      resolve: { sessions: AllSessionsResolver}}
+    ], {useHash: true})
   ],
   declarations: [
     AppComponent,
@@ -47,7 +65,10 @@ export function getToastr() {
     Sessions,
     { provide: '$location', useFactory: getLocation, deps: ['$injector']},
     { provide: 'currentIdentity', useFactory: getCurrentIdentity, deps: ['$injector']},
-    { provide: TOASTR_TOKEN, useFactory: getToastr }
+    { provide: TOASTR_TOKEN, useFactory: getToastr },
+    { provide: UrlHandlingStrategy, useClass: Ng1Ng2UrlHandlingStrategy},
+    { provide: '$scope', useExisting: '$rootScope'},
+    AllSessionsResolver
   ],
   bootstrap: [
     AppComponent
