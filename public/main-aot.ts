@@ -24,6 +24,9 @@ platformBrowser().bootstrapModuleFactory(AppModuleNgFactory).then(platformRef =>
     .directive('detailPanel', downgradeComponent({
       component: DetailPanelComponent
     }))
+    .directive('results', downgradeComponent({
+      component: ResultsComponent
+    }))
 
   const upgrade = platformRef.injector.get(UpgradeModule) as UpgradeModule;
   upgrade.bootstrap(document.documentElement, ['app']);
